@@ -54,7 +54,15 @@ GBK： 是一个支持中文的编码。
 
 ## Git 推送到远程仓库
 
-1 首先确保配置好git 环境（安装Git,配置用户名和邮箱、配置SSH Key方便本次远程连接github)
+1 首先确保配置好git 环境（安装Git,配置用户名和邮箱、配置SSH Key方便本次远程连接github)、
+
+测试是否登录github成功： 已经登录的用户信息
+
+```
+ssh -T git@github.com
+```
+
+
 
 ### 1配置好你的本地仓库
 
@@ -123,12 +131,6 @@ git remote rm 别名
 
 ### 4推送到远程仓库
 
-测试是否登录github成功： 已经登录的用户信息
-
-```
-ssh -T git@github.com
-```
-
 
 
 1.先查看默认分支
@@ -163,3 +165,30 @@ origin: 远程仓库
 
 main : 远程仓库的main 分支
 
+
+
+### 错误
+
+(base) PS D:\桌面\Notes> git push -u origin main
+remote: Permission to eniac6/Notes.git denied to eniac-ll.
+fatal: unable to access 'https://github.com/eniac6/Notes.git/': The requested URL returned error: 403
+
+记录一下：
+
+背景： 在 
+
+```
+git push -u 
+```
+
+推送代码时，出现报错，
+
+当前登录的用户 是eniac6, 但是他却显示是eniac-ll, 说明 https的缓存中登录的用户还是  eniac -ll, 所以我们需要清一下缓存。
+
+或者我们添加远程仓库时，使用ssh 地址：
+
+```
+git remote add origin git@github.com:eniac-ll/NOTES.git
+```
+
+用https,会有缓存问题。
