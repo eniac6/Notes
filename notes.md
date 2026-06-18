@@ -56,7 +56,7 @@ GBK： 是一个支持中文的编码。
 
 1 首先确保配置好git 环境（安装Git,配置用户名和邮箱、配置SSH Key方便本次远程连接github)
 
-### 配置好你的本地仓库
+### 1配置好你的本地仓库
 
 2 进入到你的文件夹，输入：
 
@@ -79,17 +79,87 @@ git add .# 将当前目录下的所有文件提交到暂存区
 git commit -m "messages" # 将暂存区的内容 提交到本地仓库
 ```
 
+### 2新建远程仓库
+
+直接在github 仓库中，new 一个。
+
+### 3本地仓库和远程仓库建立关联
+
+1添加一个远程仓库  ，并 起名为 origin.
+
+```
+git remote add origin git@github.com:eniac-ll/NOTES.git
+```
+
+参数：
+
+git  remote : 表示 git 管理远程仓库的命令
+
+add:  表示添加一个远程仓库
+
+origin:  起一个别名
 
 
-### 新建远程仓库
 
-### 本地仓库和远程仓库建立关联
+2 查看是否添加成功
+
+```
+git remote -v
+```
+
+参数解释：
+
+-v  = --verbose (**详细模式**)  ：输出 详细的远程仓库信息，fetch  和 push
 
 
 
+删除建立联系的远程仓库
+
+```
+git remote rm 别名
+```
 
 
 
+### 4推送到远程仓库
+
+测试是否登录github成功： 已经登录的用户信息
+
+```
+ssh -T git@github.com
+```
 
 
+
+1.先查看默认分支
+
+```
+git branch
+```
+
+![image-20260618122242924](assets/image-20260618122242924.png)
+
+\*  代表主分支 为 ：master
+
+2.强制命名为 main
+
+```
+git branch -M main
+```
+
+因为 github 2020开始 ，将默认仓库主分支从master 改为main, 为了确保和远程仓库的分支保持一致，要改名为main.
+
+3.推送到远程
+
+```
+git push -u origin main
+```
+
+参数：
+
+-u ： 第一次推送时，必须要带上，代表 本地和远程 建立联系。
+
+origin: 远程仓库
+
+main : 远程仓库的main 分支
 
